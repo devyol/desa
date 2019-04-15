@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+  <data>
+  	
+  	<!--Vista Tree-->
+  	<record model="ir.ui.view" id="persona_tree_view">
+  		<field name="name">persona_tree_view</field>  		
+  		<field name="model">persona</field>
+  		<field name="arch" type="xml">
+  			<tree string="Listado de Personas">
+  				<field name="name"/>
+  				<field name="celular"/>
+  				<field name="email"/>
+  			</tree>
+  		</field>
+  	</record>
+  	
+  	<!--Vista Form-->
+  	<record model="ir.ui.view" id="persona_form_view">
+  		<field name="name">persona_form_view</field>
+  		<field name="model">persona</field>
+  		<field name="arch" type="xml">
+  			<form string="Formulario Persona">
+  				<header>
+  					<button name="accept" type="object" string="Aceptar" class="oe_highlight"/>
+				</header>
+  				<sheet>
+  					<H2><field name="name"/></H2>
+  					<group>
+  						<field name="edad"/>
+  						<field name="celular"/>
+  						<field name="email"/>
+  						<field name="direccion"/>
+  					</group>
+  				</sheet>
+  			</form>
+  		</field>
+	</record>	
+	
+	<!--Actions Views on Models-->
+	<record model="ir.actions.act_window" id="persona_action_persona">
+		<field name="name">Persona</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">persona</field>
+		<field name="view_model">tree,form</field>
+	</record>
+	
+	<menuitem name="Persona" id="persona_menu_root"/>
+	
+	<menuitem name="Listado Persona" id="persona_submenu_persona" parent="persona_menu_root"/>
+	
+	<menuitem name="Persona" id="persona_registro" parent="persona_submenu_persona" action="persona_action_persona"/>
+		
+		
+  	
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="/home/erik/mis_modulos/desa/odoo_orm.list">
+      <field name="name">/home/erik/mis_modulos/desa/odoo_orm list</field>
+      <field name="model">/home/erik/mis_modulos/desa/odoo_orm./home/erik/mis_modulos/desa/odoo_orm</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="/home/erik/mis_modulos/desa/odoo_orm.action_window">
+      <field name="name">/home/erik/mis_modulos/desa/odoo_orm window</field>
+      <field name="res_model">/home/erik/mis_modulos/desa/odoo_orm./home/erik/mis_modulos/desa/odoo_orm</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="/home/erik/mis_modulos/desa/odoo_orm.action_server">
+      <field name="name">/home/erik/mis_modulos/desa/odoo_orm server</field>
+      <field name="model_id" ref="model_/home/erik/mis_modulos/desa/odoo_orm_/home/erik/mis_modulos/desa/odoo_orm"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="/home/erik/mis_modulos/desa/odoo_orm" id="/home/erik/mis_modulos/desa/odoo_orm.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="/home/erik/mis_modulos/desa/odoo_orm.menu_1" parent="/home/erik/mis_modulos/desa/odoo_orm.menu_root"/>
+    <menuitem name="Menu 2" id="/home/erik/mis_modulos/desa/odoo_orm.menu_2" parent="/home/erik/mis_modulos/desa/odoo_orm.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="/home/erik/mis_modulos/desa/odoo_orm.menu_1_list" parent="/home/erik/mis_modulos/desa/odoo_orm.menu_1"
+              action="/home/erik/mis_modulos/desa/odoo_orm.action_window"/>
+    <menuitem name="Server to list" id="/home/erik/mis_modulos/desa/odoo_orm" parent="/home/erik/mis_modulos/desa/odoo_orm.menu_2"
+              action="/home/erik/mis_modulos/desa/odoo_orm.action_server"/>
+    -->
+  </data>
+</odoo>
