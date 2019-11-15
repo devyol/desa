@@ -1,0 +1,55 @@
+<odoo>
+  <data>
+
+    <!-- odoo.conection form view -->
+    <record id="odoo_conection_view_form" model="ir.ui.view">
+      <field name="name">odoo_conection_view_form</field>
+      <field name="model">odoo.conection</field>
+      <field name="arch" type="xml">
+        <form string="Configuracion Conexión">
+          <sheet>
+            <group>
+              <!-- Add your fields here -->
+              <field name="database"/>
+              <field name="userodoo"/>
+              <field name="passodoo"/>
+              <field name="urlserver"/>
+              <field name="portserver"/>
+            </group>
+            <group>
+              <button name="authenticateOdoo" type="object" string="Test Conection" class="oe_highlight"/>                            
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- odoo.conection tree view -->
+    <record id="odoo_conection_view_tree" model="ir.ui.view">
+      <field name="name">odoo_conection_view_tree</field>
+      <field name="model">odoo.conection</field>
+      <field name="arch" type="xml">
+        <tree>
+          <!-- Add your fields here -->
+          <field name="database"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- odoo.conection action window -->
+    <record id="odoo_conection_action" model="ir.actions.act_window">
+      <field name="name">Conection</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">odoo.conection</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+    <menuitem id="_conection_root" name="Conection" sequence=""/>
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="_parameters_categ" name="Parametros" parent="_conection_root" sequence=""/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="_conection_act" name="Conexion" parent="_parameters_categ" action="odoo_conection_action" sequence=""/>
+
+  </data>
+</odoo>
