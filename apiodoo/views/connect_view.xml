@@ -17,7 +17,7 @@
               <field name="portserver"/>
             </group>
             <group>
-              <button name="authenticateOdoo" type="object" string="Test Conection" class="oe_highlight"/>                            
+              <button name="testvar" type="object" string="Test Conection" class="oe_highlight"/>                            
             </group>
           </sheet>
         </form>

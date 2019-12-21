@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from odoo.exceptions import Warning
 import xmlrpc.client
 
 username = 'admin@neoethicals.net'
@@ -19,25 +20,29 @@ class conection(models.Model):
     urlserver = fields.Char(string='Url Server')
     portserver = fields.Char(string='Puerto Server')
 
-    urlcommon = ''
-    urlobject = ''
-    common = ''
-    model = ''
-    uid = {}
-
-
-    def authenticateOdoo(self):
+    def param(self):
         urlcommon = '{}:{}/xmlrpc/2/common'.format(self.urlserver,self.portserver)
-        urlobject = '{}:{}/xmlrpc/2/objcet'.format(self.urlserver,self.portserver)
+        urlobject = '{}:{}/xmlrpc/2/object'.format(self.urlserver,self.portserver)
         common = xmlrpc.client.ServerProxy(urlcommon)
-        model = xmlrpc.client.ServerProxy(urlobject)
-        uid = common.authenticate(
-            self.database,
-            self.userodoo,
-            self.passodoo,
-            {})
-        print('respuesta: '+str(uid))
+        objectr = xmlrpc.client.ServerProxy(urlobject)
+        param = {'common':common,'object':objectr}
+        return param
+
+    def get_uid(self):
+        common = self.param()['common']
+        uid = common.authenticate(self.database,self.userodoo,self.passodoo,{})
+        return uid
+
+
+    def testvar(self):
+        try:
+            uid = self.get_uid()
+            print('Conexion exitosa, uid: ' + str(uid))            
+        except Exception as ex:
+            print(ex)
+
+
         
-
-
-    
+        
+        
+        
